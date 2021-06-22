@@ -1,8 +1,8 @@
-/* routes endpoint */ 
-projectData = {};
-
 const dotenv = require("dotenv");
 dotenv.config();
+
+/* routes endpoint */ 
+projectData = {};
 
 const path = require("path");
 const fetch = require('node-fetch');
