@@ -1,15 +1,12 @@
-const baseURL= 'http://api.openweathermap.org/data/2.5/weather?';
-const unitURL= '&units=metric';
-const getApiKey = async (url)=>{
-  const res = await fetch(url);
-  try{
-    const apiKeyData = await res.json();
-    return '&appid='+apiKeyData.id;
-  }catch(error){
-    console.log(error);
-  }
-};
+import {handleSubmit} from "./js/formHandler";
 
+import "./styles/base.scss";
+import "./styles/resets.scss";
+
+export{
+
+}
+/*
 const postData = async (url='', data={})=>{
   const res=await fetch(url, {
     method: 'POST',
@@ -125,4 +122,4 @@ function updateWeatherData(e){
 document.getElementById('generate').addEventListener('click', updateWeatherData);
 document.querySelector('#bot-anchor').addEventListener('click', e => {
   window.scrollTo({left: 0, top: 0, behavior: 'smooth'});
-});
+});*/
