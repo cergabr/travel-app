@@ -5,9 +5,9 @@
   "scripts": {
     "test": "jest",
     "testw": "jest --watch",
-    "start": "node src/server/index.js",
+    "start": "node src/server/server.js",
     "build-prod": "webpack --config webpack.prod.js",
-    "build-dev": "webpack serve --port 8000 --config webpack.dev.js --open"
+    "build-dev": "webpack serve --port 8080 --config webpack.dev.js --open"
   },
   "keywords": [],
   "author": "cergabr",
