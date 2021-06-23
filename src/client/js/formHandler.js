@@ -2,15 +2,25 @@ export function handleSubmit(e){
     e.preventDefault();
 
     const location = document.getElementById("location").value.trim();
-    const dateText = document.getElementById("departure").value;
-    //let d = new Date(dateText);
-    //let date = d.toLocaleDateString(navigator.language,{weekday: 'short', year: 'numeric', month: 'short', day: 'numeric'});
-    //console.log(date)
+    const inputDate = document.getElementById("departure").value;
 
-    const urlLocation = " http://api.geonames.org/postalCodeLookupJSON?placename="+encodeURIComponent(location);
+    const date = new Date(inputDate).getTime();
+    const today = new Date().getTime();
+    const remDays = Math.trunc((date - today)/(1000*60*60*24));
+    
+    console.log(remDays)
+    if (remDays > 0){
+        console.log("future")
+    }
+    else if(remDays == 0){
+        console.log("today")
+    }
+
+    const urlGeo = " http://api.geonames.org/postalCodeLookupJSON?placename="+encodeURIComponent(location);
+    const urlWheat = "https://api.weatherbit.io/v2.0/forecast/daily"
     
     Client.getGeodata(urlLocation)
-    .then((data)=>{
+    .then(data=>{
         console.log(data)
     })
 
