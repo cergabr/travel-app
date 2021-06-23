@@ -17,6 +17,9 @@
                     <label for="location">Location</label>
                     <input id="location" name="location" type="text" placeholder="enter location...">
                     <span></span>
+                    <label for="country">Country</label>
+                    <input id="country" name="country" type="text" maxlength="2" size="1" title="2-letter code (en,it,fr...)">
+                    <span></span>
                     <label for="departure">Departure</label>
                     <input id="departure" name="departure " type="date" placeholder="insert date...">
                     <span></span>
@@ -24,7 +27,7 @@
                 </form>
             </div>
             <div id="tripCard">
-                <div ></div>
+                <div></div>
                 <div ></div>
                 <div id="icon">
                     <img src="" alt="weather icon">
@@ -33,6 +36,20 @@
             <button id="bot-anchor" type="button">Scroll to top</button>
         </main>
         <footer></footer>
-        <script></script>
+        <script>
+            document.addEventListener("DOMContentLoaded", ()=>{
+                //set current day date and +16 day date
+                const currentDate = new Date();
+                let nextDate = new Date(currentDate);
+                nextDate.setDate(currentDate.getDate() + 16);
+                //format date to yyyy-0d-0m
+                const minDate = currentDate.getFullYear()+"-"+('0' + (currentDate.getMonth()+1)).slice(-2)+"-"+('0' + currentDate.getDate()).slice(-2);
+                const maxDate = nextDate.getFullYear()+"-"+('0' + (nextDate.getMonth()+1)).slice(-2)+"-"+('0' + nextDate.getDate()).slice(-2);
+
+                //add attributes min & max to input date
+                document.getElementById("departure").setAttribute("min",minDate);
+                document.getElementById("departure").setAttribute("max",maxDate);
+            });
+        </script>
     </body>
 </html>
