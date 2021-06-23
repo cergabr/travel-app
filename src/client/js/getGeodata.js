@@ -1,29 +1,26 @@
-export async function getGeodata(url){
-    fetch("/geonm")
+export const getGeodata = async (loc,dep) => {
+    fetch("/apiKeys")
     .then(res=>res.text())
-    .then( async key =>{
-        //key="";
-        url+="&username="+key;
-        
-        const res = await fetch(url);
-        try{
-            const geoData = await res.json();
-            if (res.ok){
-                const coord = {
-                    //city:geoData.postalcodes[0].adminName2,
-                    //country:geoData.postalcodes[0].countryCode,
-                    lat:geoData.postalcodes[0].lat,
-                    lng:geoData.postalcodes[0].lng                    
-                }
-                console.log(coord)
+    .then(keys =>{
+        /*const geonm=keys.geonm;
+        const wbit=keys.wbit;
+        const pxby=keys.pxby;*/
+        const geonm="";
+        const wbit="";
+        const pxby="";
+    
+        fetch("http://api.geonames.org/postalCodeLookupJSON?placename="+loc+"&username="+geonm)
+        .then(res=>{
+            const data = res.json();
+            const coord = {
+                    lat:data.postalcodes[0].lat.toFixed(3),
+                    lon:data.postalcodes[0].lng.toFixed(3)
+                    //city:data.postalcodes[0].adminName2,
+                    //country:data.postalcodes[0].countryCode 
+                };
+                console.log(coord);
                 return coord;
-            }
-            else{
-                return console.error("wrong input")
-            }
-        }
-        catch(erorr){
-            console.log("Error: ",error);
-        }
+        })
+        .catch(error=>{console.log("Error Geo:",error)})
     })
 }

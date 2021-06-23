@@ -28,23 +28,22 @@ app.get("/", function (req, res) {
 const port = 8080;
 app.listen(port, ()=>{console.log(`server running on localhost: ${port}`)});
 
-app.get('/geonm',(req,res)=>{res.send(process.env.GEONAMES_KEY);});
-app.get('/whtrbit',(req,res)=>{res.send(process.env.WEATHERBIT_KEY);});
-app.get('/pxby',(req,res)=>{res.send(process.env.PIXABAY_KEY);});
+app.get('/apiKeys',(req,res)=>{
+    res.send({
+        geonm: process.env.GEONAMES_KEY,
+        wbit: process.env.WEATHERBIT_KEY,
+        pxby: process.env.PIXABAY_KEY
+    });
+});
 
 app.get('/all', (req,res)=>{res.send(projectData)});
 
-projectData.weatherData=[];
-app.post('/add',(req, res)=>{
-    const newEntry = {
-        /*city: req.body.city,
-        date: req.body.date,
-        temperature: req.body.temp,
-        icon: req.body.icon,
-        weather: req.body.weather,
-        userResponse: req.body.userResponse*/
+app.post('/addGeo',(req, res)=>{
+    const geodata = {
+        lat: req.body.lat,
+        lon: req.body.lon,
     }
-    projectData.weatherData.push(newEntry);
+    projectData.geodata=geodata;
     res.send(projectData);
     console.log(projectData);
 });
