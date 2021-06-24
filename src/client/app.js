@@ -1,12 +1,12 @@
 import {handleSubmit} from "./js/formHandler";
-import {getGeodata} from "./js/getGeodata";
-import {getWeatherdata} from "./js/getWeatherdata";
+import {getTravelData} from "./js/getTravelData";
+import {inputValidate} from "./js/inputValidate";
 
 import "./styles/base.scss";
 import "./styles/resets.scss";
 
 export{
   handleSubmit,
-  getGeodata,
-  getWeatherdata
+  getTravelData,
+  inputValidate
 }
