@@ -1,20 +1,25 @@
 export function handleSubmit(e){
     e.preventDefault();
 
-    let location = document.getElementById("location").value.trim();
+    let city = document.getElementById("city").value.trim();
     const inputDate = document.getElementById("departure").value;
 
-    const date = new Date(inputDate).getTime();
-    const today = new Date().getTime();
-    const remDays = Math.trunc((date - today)/(1000*60*60*24));
-    
-    if (remDays < 0){
-        remDays="";
+    Client.inputValidate(city, inputDate);
+
+    city = encodeURIComponent(city);
+    const today = new Date();
+    today.setHours(2,0,0,0);
+    const date = new Date(inputDate);
+
+    let remDays = Math.trunc((date.getTime() - today.getTime())/(1000*3600*24));
+    if (remDays <= 0){
+        remDays=1;
+    }
+    else{
+        remDays+=1;
     }
 
-    location = encodeURIComponent(location);
-
-    Client.getGeodata(location,departure);
+    Client.getTravelData(city,remDays);
 
 }
 
