@@ -14,8 +14,8 @@
         <main>        
             <div class="user-entry">
                 <form>
-                    <label for="location">Location</label>
-                    <input id="location" name="location" type="text" placeholder="enter location...">
+                    <label for="city">city</label>
+                    <input id="city" name="city" type="text" placeholder="enter city...">
                     <span></span>
                     <label for="country">Country</label>
                     <input id="country" name="country" type="text" maxlength="2" size="1" title="2-letter code (en,it,fr...)">
@@ -27,10 +27,16 @@
                 </form>
             </div>
             <div id="tripCard">
-                <div></div>
-                <div ></div>
+                <div id="city"></div>
+                <div id="country"></div>
+                <div id="temp"></div>
+                <div id="descr"></div>
+                <div id="precip"></div>
                 <div id="icon">
-                    <img src="" alt="weather icon">
+                    <img alt="weather icon">
+                </div>
+                <div id="photo">
+                    <img>
                 </div>
             </div>
             <button id="bot-anchor" type="button">Scroll to top</button>
