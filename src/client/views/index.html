@@ -7,41 +7,64 @@
 		<meta name="description" content="travel app project">
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, minimum-scale=0.5">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <link href="./css/style.css" rel="stylesheet">
+        <link rel="stylesheet" href="/styles/resets.scss">
+        <link rel="stylesheet" href="/styles/base.css">
+        <link rel="stylesheet" href="/styles/header.css">
+        <link rel="stylesheet" href="/styles/sform.css">
+        <link rel="stylesheet" href="/styles/footer.css">
         <title>Travel App Project</title>
     </head>
     <body>
+        <header>
+            
+        </header>
         <main>        
-            <div class="user-entry">
-                <form>
-                    <label for="city">city</label>
-                    <input id="city" name="city" type="text" placeholder="enter city...">
-                    <span></span>
-                    <label for="country">Country</label>
-                    <input id="country" name="country" type="text" maxlength="2" size="1" title="2-letter code (en,it,fr...)">
-                    <span></span>
-                    <label for="departure">Departure</label>
-                    <input id="departure" name="departure " type="date" placeholder="insert date...">
-                    <span></span>
-                    <button id="submit" type="submit">Submit</button>
-                </form>
-            </div>
-            <div id="tripCard">
-                <div id="city"></div>
-                <div id="country"></div>
-                <div id="temp"></div>
-                <div id="descr"></div>
-                <div id="precip"></div>
-                <div id="icon">
-                    <img alt="weather icon">
+            <section class="user-entry">
+                <div class="bg">
+                    <h1>Search you next destination</h1>
+                    <div class="form-container">
+                        <form>
+                            <label>Destination
+                                <input id="city" name="city" type="text" placeholder="enter location..." onblur="Client.inputValidate(event)">
+                                <span></span>
+                            </label>
+                            <label>Country
+                                <input id="country" name="country" type="text" maxlength="2" size="1" title="2-letter code (en,it,fr...)" onblur="Client.inputValidate(event)">
+                                <span></span>
+                            </label>
+                            <label>Arrival
+                                <input id="arrival" name="arrival " type="date" placeholder="insert date..." onblur="Client.inputValidate(event)">
+                                <span></span>
+                            </label>
+                            <label>Departure
+                                <input id="departure" name="departure " type="date" placeholder="insert date..." onblur="Client.inputValidate(event)">
+                                <span></span>
+                            </label>
+                            <div>
+                                <button id="submit" type="submit">Search</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="bottom-grad"></div>
                 </div>
+            </section>
+            <section id="trip-card">
                 <div id="photo">
-                    <img>
                 </div>
-            </div>
-            <button id="bot-anchor" type="button">Scroll to top</button>
+                <p>
+                    <span id="trip-dates"></span> 
+                    <span id="loc"></span>
+                    <span id="days"></span>
+                </p>
+                <div id="weather">Weather</div>
+                <div id="descr"></div>
+            </section>
+            <div id="filler"></div>
         </main>
-        <footer></footer>
+        <footer>
+            <p>Images from Pixabay.com <a href="https://pixabay.com/"><img src="logo_pixabay.png" alt="pixabay logo"></a></p>
+            <p>&copy Travel App 2021</p>
+        </footer>
         <script>
             document.addEventListener("DOMContentLoaded", ()=>{
                 //set current day date and +16 day date
@@ -53,9 +76,23 @@
                 const maxDate = nextDate.getFullYear()+"-"+('0' + (nextDate.getMonth()+1)).slice(-2)+"-"+('0' + nextDate.getDate()).slice(-2);
 
                 //add attributes min & max to input date
+                document.getElementById("arrival").setAttribute("min",minDate);
+                document.getElementById("arrival").setAttribute("max",maxDate);
+                document.getElementById("arrival").setAttribute("placeholder","arrival");
                 document.getElementById("departure").setAttribute("min",minDate);
                 document.getElementById("departure").setAttribute("max",maxDate);
+                document.getElementById("departure").setAttribute("placeholder","departure");
+                
             });
+        </script>
+        <script>
+            // Check that service workers are supported
+            if ('serviceWorker' in navigator) {
+                // Use the window load event to keep the page load performant
+                window.addEventListener('load', () => {
+                    navigator.serviceWorker.register('/service-worker.js');
+                });
+            }
         </script>
     </body>
 </html>
