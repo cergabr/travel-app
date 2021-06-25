@@ -28,8 +28,9 @@ app.get("/getImage", (request,response)=>{
     fetch("https://pixabay.com/api/?key="+process.env.PIXABAY_KEY+"&q="+encodeURI(request.query.city)+"&image_type=photo&category=travel")
     .then(res=>{return res.json()})
     .then(data=>{
+        console.log("https://pixabay.com/api/?key="+process.env.PIXABAY_KEY+"&q="+encodeURI(request.query.city))
         console.log(data.hits[0])
-        return response.json({imgURL: data.hits[0].largeImageURL})
+        return response.json({imgURL: data.hits[0].webformatURL})
     })
 });
 
