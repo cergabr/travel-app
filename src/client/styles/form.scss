@@ -1,0 +1,87 @@
+.form-container{   
+    border-radius: 5px;
+    padding: 20px;
+    margin: 50px 20% 50px 20%;
+    display: block;
+    box-shadow: 0 2px 3px 5px rgb(0 0 0 / 20%);
+    background-color: white;
+    form {
+        display: inline-flex;
+        flex-flow:row wrap;
+        align-items: center;
+        justify-content: space-around;
+        width:100%;
+        label{
+            font-weight: bold;
+            text-align: center;
+            position:relative;
+        }
+        input {
+            height: 30px;
+            display:block;
+            font-family: inherit;
+            font-size: 15px;
+            padding: 4px 8px;
+            line-height: 16px;
+            margin: 10px 5px;
+            &#country{
+                width:auto;
+                text-align: center;
+            }
+            &.error{
+                outline:1px solid red;
+                & + span{
+                    display:block;
+                    color:red;
+            }
+            
+            }
+            &.valid{
+                outline:1px solid green;
+            }
+        }
+        span{
+            display:none;
+            position:absolute;
+            top:75px;
+            background-color: white;
+            margin: 0 0 10px 0;
+            padding: 10px;
+            border:1px solid rgba(119, 119, 119, 0.692);
+            border-radius: 5px;
+            order:2;
+            &::after{
+                content:"";
+                width: 0;
+                height: 0;
+                border-style: solid;
+                border-width: 0 6px 12px 6px;
+                border-color: transparent transparent rgba(0, 0, 0, 0.719) transparent;
+                position:absolute;
+                top:-13px;
+                left:calc(50% - 10px);
+            }
+        }
+        div:last-of-type{
+            padding-right:20px;
+            padding-left: 20px;
+        }
+        #submit{
+            display:inline;
+            padding: 10px 25px 10px 25px;
+            font-weight: bold;
+            font-size: 16px;
+            color:white;
+            background-color: #239BE6;
+            border:1px solid #239BE6;
+            border-radius: 5px;
+            margin-left:auto;
+            &:hover{
+                background-color: #208ccf;
+                color:white;
+                cursor:pointer;
+            }
+        }
+    }
+}
+
